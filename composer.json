@@ -1,0 +1,13 @@
+{
+    "require": {
+        "kingsoft/monolog-handler": "^1.2",
+        "kingsoft/persist-rest": "^2.11",
+        "kingsoft/persist-db": "^2.9",
+        "monolog/monolog": "^3.8"
+    },
+    "autoload": {
+      "psr-4": {
+        "Sbw\\Leaderboard\\": "./classes/Sbw/Leaderboard/"
+      }
+    }
+}
