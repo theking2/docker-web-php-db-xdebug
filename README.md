@@ -2,7 +2,7 @@
 
 * localhost:9080/ => ./htdocs
 * localhost:9306  => db
-* localhost:8080/  => adminer
+* localhost:9080/  => adminer
 
 
 change `MARIADB_ROOT_PASSWORD` first time creation. After that it is fixed. so you can change it back to something else
