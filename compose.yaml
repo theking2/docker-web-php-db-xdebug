@@ -12,11 +12,12 @@ services:
     build:
       context: .
     ports:   ["9080:80"]
-    volumes: ["../htdocs:/var/www/html"]
+    volumes: ["../htdocs/:/var/www/html"]
 
   db:
     image:   mariadb
     restart: always
+    ports:   ["3306:3306"]
     environment:
       MARIADB_ROOT_PASSWORD: geheim
 

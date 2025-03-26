@@ -19,8 +19,6 @@ RUN a2enmod rewrite \
         echo "xdebug.client_host=host.docker.internal"; \
         echo "xdebug.start_with_request=yes"; \
         echo "xdebug.log=/dev/stdout"; \
-        echo "xdebug.log_level=3"; \
     } >> "$PHP_INI_DIR/php.ini"
 
-# Copy the app dependencies from the previous install stage.
 USER www-data
