@@ -5,6 +5,14 @@
 
 ## Setup docker containers
 
+### create develop network
+
+Adapt `.env` to set the network name and than create the network if not already done
+
+```sh
+docker network create network-name-here
+```
+
 change `MARIADB_ROOT_PASSWORD` first time creation. After that it is fixed. So after generation of the containers you can (should) return it to its original or some other value
 
 When you're ready, start your application by running:
