@@ -10,7 +10,7 @@
 
 ### create develop network
 
-Adapt `.env` to set the network name and than create the network if not already done
+Adapt `.env` to set the project and network name and than create the network if not already done
 
 ```sh
 docker network create network-name-here
@@ -22,6 +22,8 @@ When you're ready, start your application by running:
 `docker compose up --build`.
 
 ## Setup xdebug launch.json
+
+The `xdebug.ini` file sits in the root. After changing make sure to restart the webserver!
 
 * Install xdebug extension
 * create launch.json (open the xdebug tab and click "create a launch.json file" )
