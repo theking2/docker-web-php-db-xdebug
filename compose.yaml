@@ -1,5 +1,5 @@
 
-name: ${PROEJECT_NAME}
+name: ${PROJECT_NAME}
 networks:
   default:
     name: ${NETWORK_NAME}
