@@ -23,6 +23,8 @@ When you're ready, start your application by running:
 
 ## Setup xdebug launch.json
 
+The `xdebug.ini` file sits in the root. After changing make sure to restart the webserver!
+
 * Install xdebug extension
 * create launch.json (open the xdebug tab and click "create a launch.json file" )
 * add thist to the configurations section in the launnch.json file (for instance just below the port: 9003 section)
