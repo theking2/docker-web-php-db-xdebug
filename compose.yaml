@@ -7,15 +7,23 @@
 # You can add other services your application may depend on here, such as a
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
-name: project-name
+name: ${PROEJECT_NAME}
+networks:
+  default:
+    name: ${NETWORK_NAME}
+
 services:
   server:
+    container_name: ${PROJECT_NAME}
+  
     build:
       context: .
     ports: ["9080:80"]
     volumes: ["../htdocs/:/var/www/html"]
 
   db:
+    container_name: ${PROJECT_NAME}-db
+
     image: mariadb
     restart: always
     ports: ["9306:3306"]
@@ -23,11 +31,8 @@ services:
       MARIADB_ROOT_PASSWORD: geheim
 
   adminer:
+    container_name: ${PROJECT_NAME}-adminer
+
     image: adminer
     restart: always
     ports: ["9081:8080"]
-
-networks:
-  default:
-    name: ${NETWORK_NAME}
-    external: true
