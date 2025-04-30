@@ -10,7 +10,7 @@
 
 ### create develop network
 
-Adapt `.env` to set the network name and than create the network if not already done
+Adapt `.env` to set the project and network name and than create the network if not already done
 
 ```sh
 docker network create network-name-here
