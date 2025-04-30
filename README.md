@@ -2,6 +2,9 @@
 
 * localhost:9080/ => ./htdocs as webroot folder
 * localhost:9081/  => adminer
+* localhost:9306 => external db connection (only needed for external access
+
+> **_NOTE:_**  from inside the network the database connection is db:3306!!
 
 ## Setup docker containers
 
@@ -31,3 +34,13 @@ When you're ready, start your application by running:
 ```
 
 and save the file. This assumes you have your webroot in a folder htdocs as indicated above.
+
+## Setup database
+
+To create a database and a user open in Adminer oder a vscode MariaDB plugin
+
+```sql
+create database my_database;
+create user 'my-user'@'%' identified by 'my-oassword';
+grant all privileges on my_database.* to 'my-user'@'%';
+```
