@@ -1,12 +1,4 @@
-# Comments are provided throughout this file to help you get started.
-# If you need more help, visit the Docker Compose reference guide at
-# https://docs.docker.com/go/compose-spec-reference/
 
-# Here the instructions define your application as a service called "server".
-# This service is built from the Dockerfile in the current directory.
-# You can add other services your application may depend on here, such as a
-# database or a cache. For examples, see the Awesome Compose repository:
-# https://github.com/docker/awesome-compose
 name: ${PROEJECT_NAME}
 networks:
   default:
@@ -14,18 +6,23 @@ networks:
 
 services:
   server:
-    container_name: ${PROJECT_NAME}
+    container_name: ${PROJECT_NAME}-web
   
     build:
       context: .
+    restart: on-failure
     ports: ["9080:80"]
-    volumes: ["../htdocs/:/var/www/html"]
+    volumes:
+      - ../htdocs/:/var/www/html
+      - ../logs/:/var/www/logs
+      - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
 
   db:
     container_name: ${PROJECT_NAME}-db
 
     image: mariadb
-    restart: always
+    volumes: ["./db/:/var/lib/mysql"]
+    restart: on-failure
     ports: ["9306:3306"]
     environment:
       MARIADB_ROOT_PASSWORD: geheim
@@ -34,5 +31,5 @@ services:
     container_name: ${PROJECT_NAME}-adminer
 
     image: adminer
-    restart: always
+    restart: on-failure
     ports: ["9081:8080"]
