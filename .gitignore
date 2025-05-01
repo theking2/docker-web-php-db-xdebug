@@ -1,4 +1,4 @@
 /backup
 /logs
-/htdocs
+/db
 *.code-workspace
