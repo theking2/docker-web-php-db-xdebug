@@ -3,6 +3,7 @@ name: ${PROJECT_NAME}
 networks:
   default:
     name: ${NETWORK_NAME}
+    driver: bridge
 
 services:
   server:
