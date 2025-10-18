@@ -8,7 +8,8 @@ networks:
 services:
   server:
     container_name: ${PROJECT_NAME}-web
-  
+    extra_hosts:
+      host.docker.internal: host-gateway  
     build:
       context: .
     restart: on-failure
