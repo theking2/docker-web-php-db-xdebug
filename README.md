@@ -39,6 +39,7 @@ To create a database and a user open in Adminer oder a vscode MariaDB plugin
 
 ```sql
 create database my_database;
-create user 'my-user'@'%' identified by 'my-oassword';
+create user 'my-user'@'%' identified by 'my-password';
 grant all privileges on my_database.* to 'my-user'@'%';
+flush privileges;
 ```
