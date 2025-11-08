@@ -23,7 +23,7 @@ services:
     container_name: ${PROJECT_NAME}-db
 
     image: mariadb
-    volumes: ["./db/:/var/lib/mysql"]
+    volumes: ["./db/:/var/lib/mysql:Z"]
     restart: on-failure
     ports: ["9306:3306"]
     environment:
