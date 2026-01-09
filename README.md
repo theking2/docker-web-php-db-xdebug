@@ -8,11 +8,17 @@
 
 ## Setup docker containers
 
-### create develop network
+### With Containers VSCode extension
 
-Adapt `.env` to set the project and network name. 
+1) Install VScode extension "Container Tools"
+2) Update `.env` file (Setting network and Project)
+3) Open `compose.yaml` file and click "Run All Services"
+4) Copy or move the folder and content `.vscode` to the root of the project
 
-change `MARIADB_ROOT_PASSWORD` first time creation. After that it is fixed. So after generation of the containers you can (should) return it to its original or some other value
+### Without extension
+
+1) Adapt `.env` to set the project and network name. 
+2) change `MARIADB_ROOT_PASSWORD` first time creation. After that it is fixed. So after generation of the containers you can (should) return it to its original or some other value
 
 When you're ready, start your application by running:
 `docker compose up --build`.
