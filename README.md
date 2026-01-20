@@ -1,10 +1,29 @@
 # setup for a complete lamp with xdebug
 
+1. Download the repositorys ZIP-file
+2. Create a project folder (this will contain the Webservers root `htdocs` and the server root (`server`) .
+3. Unzip the repo in a subfolder and rename it `server`
+
+The last step is not really needed but makes it a bit better readable. The folder structure at the end is:
+
+```
+projectname
+├── htdocs <-- root of the webser er
+├── logs
+└── server
+```
+
+
 * localhost:9080/ => ./htdocs as webroot folder
 * localhost:9081/  => adminer
 * localhost:9306 => external db connection (only needed for external access
 
-> **_NOTE:_**  from inside the network the database connection is db:3306!!
+> \[!NOTE]
+> from _inside_ the network the database connection is db:3306!!
+
+> \[!NOTE]
+> A configured `xdebug.ini` file sits in the `server` folder. It defaults to allow step debugging. After changing make sure to restart the webserver!
+
 
 ## Setup docker containers
 
@@ -15,6 +34,7 @@
 3) Open `compose.yaml` file and click "Run All Services"
 4) Copy or move the folder and content `.vscode` to the root of the project
 
+
 ### Without extension
 
 1) Adapt `.env` to set the project and network name. 
@@ -23,13 +43,14 @@
 When you're ready, start your application by running:
 `docker compose up --build`.
 
-## Setup xdebug launch.json
-
-The `xdebug.ini` file sits in the root. After changing make sure to restart the webserver!
+## Setup php xdebug
 
 * Install xdebug extension
-* create launch.json (open the xdebug tab and click "create a launch.json file" )
-* add thist to the configurations section in the launnch.json file (for instance just below the port: 9003 section)
+* Move the folder `.vscode` to the root of the project. This folder contains the setup for the VSCode PHP debugger (`launch.json`).
+
+### in detail
+
+The copied launch.json contains settings so that the PHP Debug extension sees root of the webserver at `htdocs`:
 
 ```js
             "pathMappings": {
@@ -37,7 +58,9 @@ The `xdebug.ini` file sits in the root. After changing make sure to restart the 
             }
 ```
 
-and save the file. This assumes you have your webroot in a folder htdocs as indicated above.
+## Setup Webserver
+
+Move the folder `htdocs` including its content to the root of the project folder.
 
 ## Setup database
 
