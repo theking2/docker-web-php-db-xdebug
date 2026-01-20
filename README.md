@@ -8,22 +8,13 @@ The last step is not really needed but makes it a bit better readable. The folde
 
 ```
 projectname
-├── htdocs <-- root of the webser er
-├── logs
-└── server
+├── htdocs <-- root of the webserver
+├── logs <-- place for log files
+└── server <-- apache, php and db server
 ```
-
-
-* localhost:9080/ => ./htdocs as webroot folder
-* localhost:9081/  => adminer
-* localhost:9306 => external db connection (only needed for external access
-
-> \[!NOTE]
-> from _inside_ the network the database connection is db:3306!!
 
 > \[!NOTE]
 > A configured `xdebug.ini` file sits in the `server` folder. It defaults to allow step debugging. After changing make sure to restart the webserver!
-
 
 ## Setup docker containers
 
@@ -32,16 +23,35 @@ projectname
 1) Install VScode extension "Container Tools"
 2) Update `.env` file (Setting network and Project)
 3) Open `compose.yaml` file and click "Run All Services"
-4) Copy or move the folder and content `.vscode` to the root of the project
 
+After that the following services run with these uris>
 
-### Without extension
+URI|Service
+-|-
+localhost:9080/ | webroot, contents of folder = `./htdocs`
+localhost:9081/ | adminer, a web based data manager
+localhost:9306 | external db connection (only needed for external access)
 
-1) Adapt `.env` to set the project and network name. 
+> \[!NOTE]
+> from _inside_ the network the database connection is (still) db:3306!!
+
+### Setup environment
+
+In `.env`
+
+1) set the project and network name. 
 2) change `MARIADB_ROOT_PASSWORD` first time creation. After that it is fixed. So after generation of the containers you can (should) return it to its original or some other value
 
-When you're ready, start your application by running:
-`docker compose up --build`.
+### With Visual Studio Code Containers Extension
+
+* Open compose.yaml and
+* Click  __Run all services__
+
+<img width="108" height="20" alt="image" src="https://github.com/user-attachments/assets/d12449ee-ee25-4b90-ae4f-880ca9effafe" />
+
+### Without the Extension
+
+In a termanal, start your application by running: `docker compose up --build`.
 
 ## Setup php xdebug
 
