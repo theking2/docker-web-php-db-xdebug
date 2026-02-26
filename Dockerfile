@@ -1,25 +1,22 @@
 # syntax=docker/dockerfile:1
 
 # Source image (update php version when needed)
-FROM php:8.3.12-apache as final
+FROM php:8.3.12-apache
 
-# We're going to use this path multile times. So save it in a variable.
+# PHP ini path for upload config
 ARG UPLOADS_INI="/usr/local/etc/php/conf.d/uploads.ini"
 
-# enable Rewrites and setup mysqli, pdo, and xdebug
+# Enable mod_rewrite, install dependencies, PHP extensions, and xdebug in one layer
+# Clean up apt cache to reduce image size
 RUN a2enmod rewrite \
-    && apt-get update && apt-get install -y libmariadb-dev \
-    #
-    # Install and enable mysqli and pdo_mysql extensions
+    && apt-get update \
+    && apt-get install -y --no-install-recommends libmariadb-dev \
     && docker-php-ext-install mysqli pdo_mysql \
     && docker-php-ext-enable mysqli pdo_mysql \
-    #
-    # increase upload sizes
-    && echo "upload_max_filesize = 128M" > ${UPLOADS_INI} \
-    && echo "post_max_size = 128M" >> ${UPLOADS_INI} \
-    #
-    # Install and enable xdebug. Check PHP version compatibility! (https://xdebug.org/docs/compat#versions)
+    && printf "upload_max_filesize = 128M\npost_max_size = 128M\n" > "${UPLOADS_INI}" \
     && pecl install xdebug-3.4.1 \
-    && docker-php-ext-enable xdebug
+    && docker-php-ext-enable xdebug \
+    && apt-get purge -y --auto-remove libmariadb-dev \
+    && rm -rf /var/lib/apt/lists/* /tmp/pear
 
 USER www-data
