@@ -29,8 +29,7 @@ After that the following services run with these uris>
 URI|Service
 -|-
 localhost:9080/ | webroot, contents of folder = `./htdocs`
-localhost:9081/ | adminer, a web based data manager
-localhost:9306 | external db connection (only needed for external access)
+localhost:3306 | external db connection (only needed for external access)
 
 > \[!NOTE]
 > from _inside_ the network the database connection is (still) db:3306!!
@@ -39,8 +38,10 @@ localhost:9306 | external db connection (only needed for external access)
 
 In `.env`
 
-1) set the project and network name. 
-2) change `MARIADB_ROOT_PASSWORD` first time creation. After that it is fixed. So after generation of the containers you can (should) return it to its original or some other value
+1) copy `.env_sample` to `.env`
+2) set the project and network name. 
+3) change `MARIADB_ROOT_PASSWORD` first time creation. After that it is fixed. So after generation of the containers you can (should) return it to its original or some other value
+4) set the others to what you like
 
 ### With Visual Studio Code Containers Extension
 
