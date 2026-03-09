@@ -3,6 +3,7 @@
 1. Download the repositorys ZIP-file
 2. Create a project folder (this will contain the Webservers root `htdocs` and the server root (`server`) .
 3. Unzip the repo in a subfolder and rename it `server`
+4. move the folder `htdocs` and `.vscode` to the root of you project
 
 The last step is not really needed but makes it a bit better readable. The folder structure at the end is:
 
