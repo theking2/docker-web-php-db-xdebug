@@ -30,7 +30,7 @@ After that the following services run with these uris>
 URI|Service
 -|-
 localhost:9080/ | webroot, contents of folder = `./htdocs`
-localhost:3306 | external db connection (only needed for external access)
+localhost:3306 | external db connection (change the port number in the `.env` if needed.)
 
 > \[!NOTE]
 > from _inside_ the network the database connection is (still) db:3306!!
@@ -76,7 +76,6 @@ Move the folder `htdocs` including its content to the root of the project folder
 
 ## Setup database
 
-To create a database and a user open in Adminer oder a vscode MariaDB plugin
 
 ```sql
 create database my_database;
