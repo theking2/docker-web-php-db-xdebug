@@ -42,7 +42,27 @@ In `.env`
 1) copy `.env_sample` to `.env`
 2) set the project and network name. 
 3) change `MARIADB_ROOT_PASSWORD` first time creation. After that it is fixed. So after generation of the containers you can (should) return it to its original or some other value
-4) set the others to what you like
+4) set `DOCKER_USER` to your own user and group id (see below)
+5) set the others to what you like
+
+#### `DOCKER_USER`
+
+The webserver container runs as `DOCKER_USER` (`user:` in `compose.yaml`). Set it to the `UID:GID` of your host user, so files the container writes into the mounted folders (`htdocs`, `logs`) belong to you and not to some other or unknown user.
+
+Find your ids with:
+
+```bash
+echo "$(id -u):$(id -g)"
+```
+
+and put the result in `.env`, e.g.:
+
+```
+DOCKER_USER=1000:1000
+```
+
+> \[!NOTE]
+> `1000:1000` is the default first user on most Linux systems, but check it — if it doesn't match, Apache/PHP may not be able to write uploads or logs, or you end up with files you can't edit without `sudo`. After changing it, recreate the container (`docker compose up -d --force-recreate`).
 
 ### With Visual Studio Code Containers Extension
 
